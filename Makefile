@@ -14,8 +14,7 @@ PROTOTXT_FILENAME= tiny-yolo-v1.prototxt
 GET_PROTOTXT = wget --no-cache -P . http://ncs-forum-uploads.s3.amazonaws.com/ncappzoo/tiny_yolo/${PROTOTXT_FILENAME}
 
 CAFFEMODEL_FILENAME = tiny-yolo-v1_53000.caffemodel
-GET_CAFFEMODEL = wget --no-cache -P . -N http://ncs-forum-uploads.s3.amazonaws.com/ncappzoo/tiny_yolo/${CAFFEMODEL_FILENAME}
-
+#GET_CAFFEMODEL = wget --no-cache -P . -N http://ncs-forum-uploads.s3.amazonaws.com/ncappzoo/tiny_yolo/${CAFFEMODEL_FILENAME}
 
 .PHONY: all
 all: profile compile 
@@ -46,7 +45,7 @@ caffemodel:
 		echo "caffemodel file already exists"; \
 	else \
 		echo "Downloading caffemodel file"; \
-		${GET_CAFFEMODEL}; \
+		#${GET_CAFFEMODEL};
 		if ! [ -e ${CAFFEMODEL_FILENAME} ] ; \
 		then \
 			echo "***\nError - Could not download caffemodel file. Check network and proxy settings \n***\n"; \
@@ -70,7 +69,8 @@ browse_profile: profile
 	fi ; 
 
 .PHONY: compile
-compile: prototxt caffemodel
+#compile: prototxt caffemodel
+compile: prototxt 
 	@echo "\nmaking compile"
 	${NCCOMPILE} -o ${GRAPH_FILENAME} -w ${CAFFEMODEL_FILENAME} -s 12 ${PROTOTXT_FILENAME}
 
@@ -92,7 +92,7 @@ graph:
 .PHONY: run_py
 run_py: compile
 	@echo "\nmaking run_py"
-	python3 ./run.py
+	python ./run.py
 
 .PHONY: help
 help:
@@ -100,7 +100,7 @@ help:
 	@echo "  make help - shows this message";
 	@echo "  make all - makes the following: prototxt, profile, compile, check, cpp, run_py, run_cpp";
 	@echo "  make prototxt - downloads and adds input shape to Caffe prototxt file";
-	@echo "  make caffemodel - downloads the caffemodel for the network"
+	#@echo "  make caffemodel - downloads the caffemodel for the network"
 	@echo "  make compile - runs SDK compiler tool to compile the NCS graph file for the network";
 	@echo "  make profile - runs the SDK profiler tool to profile the network creating output_report.html";
 	@echo "  make browse_profile - runs the SDK profiler tool and brings up report in browser.";
