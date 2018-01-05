@@ -8,7 +8,7 @@ This is an adaptation from https://github.com/movidius/ncappzoo/tree/master/caff
 The TinyYolo network can be used for object recognition and classification. See https://pjreddie.com/darknet/yolov1/ for more information on this network. The provided Makefile does the following
 
 1. Downloads the Caffe prototxt file
-2. Downloads the .caffemodel file which was trained.
+2. Downloads the .caffemodel file which was trained. https://pan.baidu.com/s/1kUPsCNP
 3. Profiles and Compiles the network using the Neural Compute SDK.
 4. Runs the provided stream.py program that does a single inference on a provided image as an example on how to use the network using the Neural Compute API
 
