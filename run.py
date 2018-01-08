@@ -15,8 +15,8 @@ from picamera import PiCamera
 
 
 # Assume running in examples/caffe/TinyYolo and graph file is in current directory.
-input_image_file= './dog.jpg'
 #input_image_file= './dog.jpg'
+
 tiny_yolo_graph_file= './graph'
 
 # Tiny Yolo assumes input images are these dimensions.
@@ -277,6 +277,7 @@ def main():
     if len(devices) == 0:
         print('No devices found')
         return 1
+
     device = mvnc.Device(devices[0])
     device.OpenDevice()
 
